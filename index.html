@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <meta name="description" content="Algebro">
+
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -13,29 +14,39 @@
 <body>
 
     <div id="container">
-        <div id="screen">
-            <div id="lastNumber">Last number</div>
-            <div id="currentNumber">Current number</div>
+        <div id="screen-wrap">
+            <img src="img/logo.png">
+            <div id="screen">
+                <div id="lastNumber">1234.12</div>
+                <div id="screenBottom">
+                    <div id="operator">÷</div>
+
+                    <div id="currentNumber">7542.97</div>
+                </div>
+            </div>
 
         </div>
         <div id="keypad">
-            <div id="b1" class="button">1</div>
-            <div id="b2" class="button">2</div>
-            <div id="b3" class="button">3</div>
-            <div id="b4" class="button">4</div>
-            <div id="b5" class="button">5</div>
-            <div id="b6" class="button">6</div>
-            <div id="b7" class="button">7</div>
-            <div id="b8" class="button">8</div>
-            <div id="b9" class="button">9</div>
-            <div id="b0" class="button">0</div>
-            <div id="bPlus" class="button">+</div>
+            <div id="bOnOff" class="button">ON/OFF</div>
+            <div id="bReset" class="button">RESET</div>
+            <div id="bDivide" class="button">÷</div>
+            <div id="bDelete" class="button">←</div>
+            <div id="b7" class="button number">7</div>
+            <div id="b8" class="button number">8</div>
+            <div id="b9" class="button number">9</div>
+            <div id="bMultiply" class="button">×</div>
+            <div id="b4" class="button number">4</div>
+            <div id="b5" class="button number">5</div>
+            <div id="b6" class="button number">6</div>
             <div id="bMinus" class="button">-</div>
-            <div id="bMultiply" class="button">x</div>
-            <div id="bDivide" class="button">/</div>
-            <div id="bEqual" class="button">=</div>
-            <div id="bDelete" class="button">=</div>
-            <div id="bOnOff" class="button">=</div>
+
+            <div id="b1" class="button number">1</div>
+            <div id="b2" class="button number">2</div>
+            <div id="b3" class="button number">3</div>
+            <div id="bPlus" class="button">+</div>
+            <div id="b0" class="button number">0</div>
+            <div id="bComa" class="button number">.</div>
+            <div id="bEqual" class="button large">=</div>
 
         </div>
     </div>

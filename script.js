@@ -27,6 +27,7 @@ const operator = document.getElementsById('operator');
 //Log first input a string
 
 
+
 defineAKey = function (id) {
     this.id = id;
 }

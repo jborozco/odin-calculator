@@ -1,4 +1,151 @@
+@font-face {
+    font-family: "Digital Numbers";
+    src: url("font/Digital7Mono-Yz9J4.ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
-    padding: 10px;
-    border: solid 1px palevioletred;
+
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #F0A4BE 0%, #FFCDDB 100%);
+
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#keypad {
+    display: flex;
+    border-radius: 11px;
+    background-color: #CE525B;
+    flex-wrap: wrap;
+    width: 326px;
+    height: 397px;
+    padding: 3px;
+
+
+}
+
+.button {
+    width: 78px;
+    height: 76px;
+    background-image: url(img/button.svg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 23px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #000000;
+}
+
+.button.large {
+    width: 158px;
+    height: 76px;
+    background-image: url(img/button-wide.svg);
+}
+
+#screen-wrap {
+    width: 318px;
+    height: 152px;
+    background: #232A30;
+    border-radius: 11px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    margin-bottom: 9px;
+}
+
+#screen-wrap img {
+    padding-bottom: 6px;
+
+}
+
+#screen {
+    width: 302px;
+    height: 112px;
+    background: linear-gradient(180deg, #57626E 0%, #97AAB3 4.69%, #97AAB3 100%);
+    border-radius: 11px;
+    flex-direction: column;
+    text-align: right;
+    padding: 6px;
+}
+
+
+
+#currentNumber {
+    font-family: 'Digital Numbers';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 49px;
+    text-align: right;
+    width: 100%;
+    color: #434650;
+    text-align: right;
+    justify-content: flex-end;
+
+}
+
+#lastNumber {
+    font-family: 'Digital Numbers';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    color: #6A6C72;
+    width: 100%;
+    text-align: right;
+    justify-content: flex-end;
+
+
+}
+
+#operator {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    position: relative;
+    color: #434650;
+    left: 0;
+    bottom: 0;
+
+}
+
+#bOnOff,
+#bReset {
+    font-size: 13px;
+}
+
+#screenBottom {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
