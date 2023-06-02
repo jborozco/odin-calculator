@@ -57,10 +57,15 @@ body {
     font-size: 19px;
     line-height: 23px;
     /* identical to box height */
-
+    cursor: pointer;
     text-align: center;
 
     color: #000000;
+}
+
+.button:active {
+    background-image: url();
+    background-color: #000000;
 }
 
 .button.large {
