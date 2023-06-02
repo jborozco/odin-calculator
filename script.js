@@ -25,22 +25,30 @@ const currentNumber = document.querySelector('#currentNumber');
 const operator = document.querySelector('#operator');
 
 
-//Set up initial value
+//Set up initial values
 let currentNumberValue = "";
-currentNumber.innerHTML = "-";
+currentNumber.innerHTML = "";
 
 
-let numberKeys = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,]
+let numberKeys = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bComa, bMinus];
+let operatorKeys = []
+
 
 
 // Add the last digit to selected to current value and return it to the DOM
 addToCurrentNumber = function (button) {
-    currentNumberValue = currentNumberValue + button.title;
-    currentNumber.innerHTML = currentNumberValue;
-    console.log(button)
+    if (
+        (button.title === "-" && currentNumberValue === "") ||
+        (button.title !== "-")
+    ) {
+        console.log(currentNumberValue.includes('.'))
+        currentNumberValue = currentNumberValue + button.title;
+        currentNumber.innerHTML = currentNumberValue;
+    }
+
+
+
 }
-
-
 
 numberKeys.forEach(numberKey => {
     numberKey.onclick = function () { addToCurrentNumber(numberKey) }
