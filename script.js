@@ -17,6 +17,7 @@ const bDivide = document.querySelector('#bDivide');
 const bEqual = document.querySelector('#bEqual');
 const bDelete = document.querySelector('#bDelete');
 const bOnOff = document.querySelector('#bOnOff');
+const bComa = document.querySelector('#bComa');
 
 // define screen fields
 const lastNumber = document.querySelector('#lastNumber');
@@ -24,21 +25,26 @@ const currentNumber = document.querySelector('#currentNumber');
 const operator = document.querySelector('#operator');
 
 
-//Log first input a string
+//Set up initial value
 let currentNumberValue = "";
-
-
 currentNumber.innerHTML = "-";
 
 
-b0.onclick = function () { inputCurrentNumber(b0) }
+let numberKeys = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,]
 
-inputCurrentNumber = function (button) {
 
+// Add the last digit to selected to current value and return it to the DOM
+addToCurrentNumber = function (button) {
     currentNumberValue = currentNumberValue + button.title;
     currentNumber.innerHTML = currentNumberValue;
     console.log(button)
 }
+
+
+
+numberKeys.forEach(numberKey => {
+    numberKey.onclick = function () { addToCurrentNumber(numberKey) }
+});
 
 
 
