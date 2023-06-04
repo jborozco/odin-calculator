@@ -39,20 +39,34 @@ let operatorKeys = []
 addToCurrentNumber = function (button) {
     if (
         (button.title === "-" && currentNumberValue === "") ||
-        (button.title !== "-")
+        (button.title !== "-") || //Allow negative value to be set
+        (currentNumberValue.includes('.') === false && currentNumberValue !== "")//Allow decimal value to be set
     ) {
         console.log(currentNumberValue.includes('.'))
         currentNumberValue = currentNumberValue + button.title;
         currentNumber.innerHTML = currentNumberValue;
     }
 
-
-
 }
+
+//Delete last digit for correction 
+deleteLastDigit = function () {
+    currentNumberValue = currentNumberValue.slice(0, -1);
+    currentNumber.innerHTML = currentNumberValue;
+    console.log(currentNumberValue);
+}
+
+
+
+// Call functions on keys
 
 numberKeys.forEach(numberKey => {
     numberKey.onclick = function () { addToCurrentNumber(numberKey) }
 });
+
+bDelete.onclick = function () { deleteLastDigit() }
+
+
 
 
 
