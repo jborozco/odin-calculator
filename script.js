@@ -64,59 +64,75 @@ deleteLastDigit = function () {
 resetCalculator = function () {
     currentNumberValue = "";
     lastNumberValue = "";
+    operatorValue = "";
+    showResult();
+}
+
+logOperator = function (button) {
+    if (lastNumberValue != 0) {
+        operatorValue = button.title;
+        operator.innerHTML = operatorValue;
+    }
+}
+
+
+showResult = function () {
+    operator.innerHTML = operatorValue;
     currentNumber.innerHTML = currentNumberValue;
     lastNumber.innerHTML = lastNumberValue;
 }
 
-logOperator = function (button) {
-    operatorValue = button.title;
-    operator.innerHTML = operatorValue;
-}
-
-
 operate = function (button) {
-
-
     if (lastNumberValue === "") { // log last 
         lastNumberValue = currentNumberValue;
-        currentNumberValue = "";
-
 
     }
     else if (operatorValue === "+") {
         lastNumberValue = +lastNumberValue + +currentNumberValue;
-        currentNumberValue = "";
     }
-
     else if (operatorValue === "-") {
         lastNumberValue = +lastNumberValue - +currentNumberValue;
-        currentNumberValue = "";
     }
-
-
     else if (operatorValue === "÷") {
         lastNumberValue = +lastNumberValue / +currentNumberValue;
-        currentNumberValue = "";
     }
 
     else if (operatorValue === "×") {
         lastNumberValue = +lastNumberValue * +currentNumberValue;
-        currentNumberValue = "";
     }
+    currentNumberValue = "";
+
+    showResult();
     //log operator value for next operation
     logOperator(button);
 
-    //push current to last
-    //show the sign
-    //reset current
-
-    operator.innerHTML = button.title;
-    currentNumber.innerHTML = currentNumberValue;
-    lastNumber.innerHTML = lastNumberValue;
-
 }
 
+equal = function () {
+    if (lastNumberValue === "") { // log last 
+        lastNumberValue = currentNumberValue;
+    }
+    else if (operatorValue === "+") {
+        currentNumberValue = +lastNumberValue + +currentNumberValue;
+    }
+    else if (operatorValue === "-") {
+        currentNumberValue = +lastNumberValue - +currentNumberValue;
+    }
+    else if (operatorValue === "÷") {
+        currentNumberValue = +lastNumberValue / +currentNumberValue;
+    }
 
+    else if (operatorValue === "×") {
+        currentNumberValue = +lastNumberValue * +currentNumberValue;
+    }
+
+    lastNumberValue = "";
+    operatorValue = "";
+
+    showResult();
+    currentNumberValue = "";
+
+}
 
 // Call functions on keys
 
@@ -131,6 +147,7 @@ operatorKeys.forEach(operatorKey => {
 
 bDelete.onclick = function () { deleteLastDigit() }
 bReset.onclick = function () { resetCalculator() }
+bEqual.onclick = function () { equal() }
 
 
 
