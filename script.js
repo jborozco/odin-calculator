@@ -18,6 +18,7 @@ const bEqual = document.querySelector('#bEqual');
 const bDelete = document.querySelector('#bDelete');
 const bOnOff = document.querySelector('#bOnOff');
 const bComa = document.querySelector('#bComa');
+const bReset = document.querySelector('#bReset');
 
 // define screen fields
 const lastNumber = document.querySelector('#lastNumber');
@@ -28,6 +29,8 @@ const operator = document.querySelector('#operator');
 //Set up initial values
 let currentNumberValue = "";
 currentNumber.innerHTML = "";
+let lastNumberValue = "";
+lastNumber.innerHTML = "";
 
 
 let numberKeys = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bComa, bMinus];
@@ -53,9 +56,14 @@ addToCurrentNumber = function (button) {
 deleteLastDigit = function () {
     currentNumberValue = currentNumberValue.slice(0, -1);
     currentNumber.innerHTML = currentNumberValue;
-    console.log(currentNumberValue);
 }
 
+resetCalculator = function () {
+    currentNumberValue = "";
+    lastNumberValue = "";
+    currentNumber.innerHTML = currentNumberValue;
+    lastNumber.innerHTML = lastNumberValue;
+}
 
 
 // Call functions on keys
@@ -65,6 +73,7 @@ numberKeys.forEach(numberKey => {
 });
 
 bDelete.onclick = function () { deleteLastDigit() }
+bReset.onclick = function () { resetCalculator() }
 
 
 
