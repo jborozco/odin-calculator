@@ -25,20 +25,24 @@ const lastNumber = document.querySelector('#lastNumber');
 const currentNumber = document.querySelector('#currentNumber');
 const operator = document.querySelector('#operator');
 
+let operatorValue = "";
+operator.innerHTML = operatorValue;
 
 //Set up initial values
 let currentNumberValue = "";
 currentNumber.innerHTML = "";
+
 let lastNumberValue = "";
 lastNumber.innerHTML = "";
 
 
+
 let numberKeys = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bComa, bMinus];
-let operatorKeys = []
+let operatorKeys = [bPlus, bMinus, bMultiply, bDivide]
 
 
 
-// Add the last digit to selected to current value and return it to the DOM
+// Functions for the calculator keys 
 addToCurrentNumber = function (button) {
     if (
         (button.title === "-" && currentNumberValue === "") ||
@@ -52,7 +56,6 @@ addToCurrentNumber = function (button) {
 
 }
 
-//Delete last digit for correction 
 deleteLastDigit = function () {
     currentNumberValue = currentNumberValue.slice(0, -1);
     currentNumber.innerHTML = currentNumberValue;
@@ -65,12 +68,66 @@ resetCalculator = function () {
     lastNumber.innerHTML = lastNumberValue;
 }
 
+logOperator = function (button) {
+    operatorValue = button.title;
+    operator.innerHTML = operatorValue;
+}
+
+
+operate = function (button) {
+
+
+    if (lastNumberValue === "") { // log last 
+        lastNumberValue = currentNumberValue;
+        currentNumberValue = "";
+
+
+    }
+    else if (operatorValue === "+") {
+        lastNumberValue = +lastNumberValue + +currentNumberValue;
+        currentNumberValue = "";
+    }
+
+    else if (operatorValue === "-") {
+        lastNumberValue = +lastNumberValue - +currentNumberValue;
+        currentNumberValue = "";
+    }
+
+
+    else if (operatorValue === "÷") {
+        lastNumberValue = +lastNumberValue / +currentNumberValue;
+        currentNumberValue = "";
+    }
+
+    else if (operatorValue === "×") {
+        lastNumberValue = +lastNumberValue * +currentNumberValue;
+        currentNumberValue = "";
+    }
+    //log operator value for next operation
+    logOperator(button);
+
+    //push current to last
+    //show the sign
+    //reset current
+
+    operator.innerHTML = button.title;
+    currentNumber.innerHTML = currentNumberValue;
+    lastNumber.innerHTML = lastNumberValue;
+
+}
+
+
 
 // Call functions on keys
 
 numberKeys.forEach(numberKey => {
     numberKey.onclick = function () { addToCurrentNumber(numberKey) }
 });
+
+operatorKeys.forEach(operatorKey => {
+    operatorKey.onclick = function () { operate(operatorKey) }
+});
+
 
 bDelete.onclick = function () { deleteLastDigit() }
 bReset.onclick = function () { resetCalculator() }
