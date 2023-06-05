@@ -18,7 +18,7 @@ const bEqual = document.querySelector('#bEqual');
 const bDelete = document.querySelector('#bDelete');
 const bOnOff = document.querySelector('#bOnOff');
 const bComa = document.querySelector('#bComa');
-const bReset = document.querySelector('#bReset');
+const bPosNeg = document.querySelector('#bPosNeg');
 
 // define screen fields
 const lastNumber = document.querySelector('#lastNumber');
@@ -51,20 +51,33 @@ addToCurrentNumber = function (button) {
         currentNumber.innerHTML = currentNumberValue;
     }
     else if ((button.title === ".") &&
-        (currentNumberValue.includes('.') === true)) {
-        //if already a coma, do nothing
-    }
+        (currentNumberValue.includes('.') === true)) {        //if there is already a coma, do nothing
 
-    else if (
-        (button.title === "-" && currentNumberValue === "") ||
-        (button.title !== "-")  //Allow negative value to be set
-        //Allow decimal value to be set
-    ) {
+    }
+    else if (button.title === "-" && currentNumberValue.includes('-')) //Allow negative value to be set
+    {
+    }
+    else {
         currentNumberValue = currentNumberValue + button.title;
         currentNumber.innerHTML = currentNumberValue;
     }
 
 }
+
+ChangeValueSign = function () {
+    if (currentNumberValue === "") {
+        currentNumberValue = "-";
+    }
+    else if (currentNumberValue === "-") {
+        currentNumberValue = "";
+    }
+    else {
+        currentNumberValue = `${-currentNumberValue}`;
+    }
+    currentNumber.innerHTML = currentNumberValue;
+
+}
+
 
 deleteLastDigit = function () {
     currentNumberValue = currentNumberValue.slice(0, -1);
@@ -117,13 +130,11 @@ operate = function (button) {
     lastNumberValue = result;
     currentNumberValue = "";
     showResult();
-    //log operator value for next operation
-    logOperator(button);
+    logOperator(button);    //log operator value for next operation
 
 }
 
 equal = function () {
-
     if (operatorValue === "=" || operatorValue === "") {
         resetCalculator();
     }
@@ -135,6 +146,8 @@ equal = function () {
         showResult();
     }
 }
+
+
 
 
 
@@ -150,8 +163,8 @@ operatorKeys.forEach(operatorKey => {
 
 
 bDelete.onclick = function () { deleteLastDigit() }
-bReset.onclick = function () { resetCalculator() }
 bEqual.onclick = function () { equal() }
+bPosNeg.onclick = function () { ChangeValueSign() }
 
 
 

@@ -64,14 +64,18 @@ body {
 }
 
 .button:active {
-    background-image: url();
-    background-color: #000000;
+    background-image: url(img/calculator-button-active.svg);
+
 }
 
 .button.large {
     width: 158px;
     height: 76px;
     background-image: url(img/button-wide.svg);
+}
+
+.button.large:active {
+    background-image: url(img/button-wide-active.svg);
 }
 
 #screen-wrap {
@@ -98,6 +102,14 @@ body {
     flex-direction: column;
     text-align: right;
     padding: 6px;
+}
+
+#screen.off {
+    background-color: #434650;
+}
+
+#screen.off * {
+    color: transparent !important;
 }
 
 
