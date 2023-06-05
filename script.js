@@ -45,14 +45,16 @@ let operatorKeys = [bPlus, bMinus, bMultiply, bDivide]
 
 // Functions for the calculator keys 
 addToCurrentNumber = function (button) {
-    if (operatorValue === "=") {
+    if (+currentNumberValue.length >= 11) {
+        //limit the number to 11 digits 
+    }
+    else if (operatorValue === "=") {
         resetCalculator();
         currentNumberValue = button.title;
         currentNumber.innerHTML = currentNumberValue;
     }
     else if ((button.title === ".") &&
         (currentNumberValue.includes('.') === true)) {        //if there is already a coma, do nothing
-
     }
     else if (button.title === "-" && currentNumberValue.includes('-')) //Allow negative value to be set
     {
@@ -65,7 +67,10 @@ addToCurrentNumber = function (button) {
 }
 
 ChangeValueSign = function () {
-    if (currentNumberValue === "") {
+    if (operatorValue === "=") {
+
+    }
+    else if (currentNumberValue === "") {
         currentNumberValue = "-";
     }
     else if (currentNumberValue === "-") {
