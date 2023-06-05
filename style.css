@@ -138,8 +138,7 @@ body {
     width: 100%;
     text-align: right;
     justify-content: flex-end;
-
-
+    height: 36px;
 }
 
 #operator {
@@ -165,4 +164,5 @@ body {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    height: 49px;
 }
