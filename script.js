@@ -35,6 +35,7 @@ currentNumber.innerHTML = "";
 let lastNumberValue = "";
 lastNumber.innerHTML = "";
 
+let result = "";
 
 
 let numberKeys = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bComa, bMinus];
@@ -65,6 +66,7 @@ resetCalculator = function () {
     currentNumberValue = "";
     lastNumberValue = "";
     operatorValue = "";
+    result = "";
     showResult();
 }
 
@@ -82,26 +84,29 @@ showResult = function () {
     lastNumber.innerHTML = lastNumberValue;
 }
 
-operate = function (button) {
-    if (lastNumberValue === "") { // log last 
-        lastNumberValue = currentNumberValue;
-
+calculate = function () {
+    if (result === "") { // log last 
+        result = currentNumberValue;
     }
     else if (operatorValue === "+") {
-        lastNumberValue = +lastNumberValue + +currentNumberValue;
+        result = parseFloat(lastNumberValue) + parseFloat(currentNumberValue);
     }
     else if (operatorValue === "-") {
-        lastNumberValue = +lastNumberValue - +currentNumberValue;
+        result = parseFloat(lastNumberValue) - parseFloat(currentNumberValue);
     }
     else if (operatorValue === "÷") {
-        lastNumberValue = +lastNumberValue / +currentNumberValue;
+        result = parseFloat(lastNumberValue) / parseFloat(currentNumberValue);
     }
-
     else if (operatorValue === "×") {
-        lastNumberValue = +lastNumberValue * +currentNumberValue;
+        result = parseFloat(lastNumberValue) * parseFloat(currentNumberValue);
     }
-    currentNumberValue = "";
 
+}
+
+operate = function (button) {
+    calculate();
+    lastNumberValue = result;
+    currentNumberValue = "";
     showResult();
     //log operator value for next operation
     logOperator(button);
@@ -109,30 +114,21 @@ operate = function (button) {
 }
 
 equal = function () {
-    if (lastNumberValue === "") { // log last 
-        lastNumberValue = currentNumberValue;
-    }
-    else if (operatorValue === "+") {
-        currentNumberValue = +lastNumberValue + +currentNumberValue;
-    }
-    else if (operatorValue === "-") {
-        currentNumberValue = +lastNumberValue - +currentNumberValue;
-    }
-    else if (operatorValue === "÷") {
-        currentNumberValue = +lastNumberValue / +currentNumberValue;
-    }
 
-    else if (operatorValue === "×") {
-        currentNumberValue = +lastNumberValue * +currentNumberValue;
+    if (operatorValue === "=" || operatorValue === "") {
+        resetCalculator();
+
     }
-
-    lastNumberValue = "";
-    operatorValue = "";
-
-    showResult();
-    currentNumberValue = "";
-
+    else {
+        calculate();
+        currentNumberValue = result;
+        lastNumberValue = "";
+        operatorValue = "=";
+        showResult();
+    }
 }
+
+
 
 // Call functions on keys
 
