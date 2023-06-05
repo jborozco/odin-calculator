@@ -105,7 +105,7 @@ body {
 }
 
 #screen.off {
-    background-color: #434650;
+    background: #434650;
 }
 
 #screen.off * {

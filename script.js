@@ -21,6 +21,7 @@ const bComa = document.querySelector('#bComa');
 const bPosNeg = document.querySelector('#bPosNeg');
 
 // define screen fields
+const screen = document.querySelector('#screen');
 const lastNumber = document.querySelector('#lastNumber');
 const currentNumber = document.querySelector('#currentNumber');
 const operator = document.querySelector('#operator');
@@ -112,21 +113,26 @@ showResult = function () {
 }
 
 calculate = function () {
-    if (result === "") { // log last 
+    if (result === "") {
         result = currentNumberValue;
     }
     else if (operatorValue === "+") {
         result = parseFloat(lastNumberValue) + parseFloat(currentNumberValue);
+        result = parseFloat(result.toFixed(2));
     }
     else if (operatorValue === "-") {
         result = parseFloat(lastNumberValue) - parseFloat(currentNumberValue);
+        result = parseFloat(result.toFixed(2));
     }
     else if (operatorValue === "÷") {
         result = parseFloat(lastNumberValue) / parseFloat(currentNumberValue);
+        result = parseFloat(result.toFixed(2));
     }
     else if (operatorValue === "×") {
         result = parseFloat(lastNumberValue) * parseFloat(currentNumberValue);
+        result = parseFloat(result.toFixed(2));
     }
+
 
 }
 
@@ -152,7 +158,13 @@ equal = function () {
     }
 }
 
-
+onOff = function () {
+    if (screen.className === "off") {
+        screen.classList.remove("off");
+        resetCalculator();
+    }
+    else { screen.classList.add("off"); }
+}
 
 
 
@@ -170,26 +182,4 @@ operatorKeys.forEach(operatorKey => {
 bDelete.onclick = function () { deleteLastDigit() }
 bEqual.onclick = function () { equal() }
 bPosNeg.onclick = function () { ChangeValueSign() }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// On selection of an operator > log first string as a int and apply the operator
-// Log second input a string
-// On equal or other operator show result and push current input 
-
-
-//need to commit pseudocode
+bOnOff.onclick = function () { onOff() }
