@@ -45,12 +45,21 @@ let operatorKeys = [bPlus, bMinus, bMultiply, bDivide]
 
 // Functions for the calculator keys 
 addToCurrentNumber = function (button) {
-    if (
+    if (operatorValue === "=") {
+        resetCalculator();
+        currentNumberValue = button.title;
+        currentNumber.innerHTML = currentNumberValue;
+    }
+    else if ((button.title === ".") &&
+        (currentNumberValue.includes('.') === true)) {
+        //if already a coma, do nothing
+    }
+
+    else if (
         (button.title === "-" && currentNumberValue === "") ||
-        (button.title !== "-") || //Allow negative value to be set
-        (currentNumberValue.includes('.') === false && currentNumberValue !== "")//Allow decimal value to be set
+        (button.title !== "-")  //Allow negative value to be set
+        //Allow decimal value to be set
     ) {
-        console.log(currentNumberValue.includes('.'))
         currentNumberValue = currentNumberValue + button.title;
         currentNumber.innerHTML = currentNumberValue;
     }
@@ -73,10 +82,10 @@ resetCalculator = function () {
 logOperator = function (button) {
     if (lastNumberValue != 0) {
         operatorValue = button.title;
+        console.log(typeof currentNumberValue);
         operator.innerHTML = operatorValue;
     }
 }
-
 
 showResult = function () {
     operator.innerHTML = operatorValue;
@@ -117,7 +126,6 @@ equal = function () {
 
     if (operatorValue === "=" || operatorValue === "") {
         resetCalculator();
-
     }
     else {
         calculate();
